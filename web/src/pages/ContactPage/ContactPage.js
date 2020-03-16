@@ -20,7 +20,7 @@ const CREATE_CONTACT = gql`
 `
 
 const ContactPage = () => {
-  const formMethods = useForm()
+  const formMethods = useForm({ mode: 'onBlur' })
   const [create, { loading, error }] = useMutation(CREATE_CONTACT, {
     onCompleted: () => {
       alert('Thank you for your submission!')
@@ -35,12 +35,7 @@ const ContactPage = () => {
 
   return (
     <BlogLayout>
-      <Form
-        onSubmit={onSubmit}
-        validation={{ mode: 'onBlur' }}
-        error={error}
-        formMethods={formMethods}
-      >
+      <Form onSubmit={onSubmit} error={error} formMethods={formMethods}>
         <FormError
           error={error}
           wrapperStyle={{ color: 'red', backgroundColor: 'lavenderblush' }}
